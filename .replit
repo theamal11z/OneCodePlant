@@ -2,6 +2,7 @@ modules = ["python-3.11"]
 
 [nix]
 channel = "stable-24_05"
+packages = ["libyaml"]
 
 [workflows]
 runButton = "Project"
@@ -21,24 +22,7 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = '''
-pip install -e . && python -m onecode.cli --help && echo "OneCode Plant CLI is ready! Try commands like:" && echo "  onecode --version" && echo "  onecode plugins" && echo "  onecode build --help" && echo "  onecode sim --help" && python -c "
-import sys
-print('\n=== OneCode Plant CLI Demo ===')
-print('Starting interactive demo server...')
-from onecode.cli import OneCodeCLI
-cli = OneCodeCLI()
-print(f'✓ CLI initialized successfully')
-print(f'✓ Config manager loaded')
-print(f'✓ Plugin manager loaded')
-print(f'✓ ROS2 interface ready')
-print('\nAvailable plugins:')
-for name, plugin in cli.plugin_manager.plugins.items():
-    status = '✓' if plugin.is_available() else '✗'
-    print(f'  {status} {name}: {plugin.description}')
-print('\nOneCode Plant CLI is ready for use!')
-print('Run: onecode --help for full command list')
-" && echo "Starting development server on port 5000..." && python -m http.server 5000'''
+args = "python -m onecode.cli --help && echo \"Testing OneCode CLI commands:\" && python -m onecode.cli --version && python -m onecode.cli plugins && echo \"CLI is working! Starting demo server...\" && python -m http.server 5000"
 waitForPort = 5000
 
 [deployment]

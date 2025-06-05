@@ -66,7 +66,7 @@ class SimulationPlugin(PluginBase):
         """Get additional information about the simulation plugin."""
         info = super().get_info()
         
-        if self.is_available():
+        if info is not None and self.is_available():
             # Check which simulators are available
             simulators = []
             
@@ -239,10 +239,13 @@ class SimulationPlugin(PluginBase):
             return 1
         
         # Try to spawn robot using ros2 service call
+        spawn_args = '{{name: "{}", xml: "", initial_pose: {{position: {{x: {}, y: {}, z: {}}}, orientation: {{z: {}}}}}}}'.format(
+            robot, x, y, z, yaw
+        )
         cmd = [
             'ros2', 'service', 'call', '/spawn_entity',
             'gazebo_msgs/SpawnEntity',
-            f'{{name: "{robot}", xml: "", initial_pose: {{position: {{x: {x}, y: {y}, z: {z}}}, orientation: {{z: {yaw}}}}}}'
+            spawn_args
         ]
         
         self.logger.info(f"Spawning robot {robot} at position ({x}, {y}, {z})")

@@ -1,0 +1,107 @@
+Metadata-Version: 2.4
+Name: onecode-plant-cli
+Version: 0.1.0
+Summary: Intelligent ROS2 development tooling and unified workflows
+Home-page: https://github.com/onecode-plant/onecode-plant-cli
+Author: OneCode Plant Team
+Author-email: OneCode Plant Team <team@onecode-plant.org>
+Maintainer: OneCode Plant Team
+Maintainer-email: OneCode Plant Team <team@onecode-plant.org>
+License: Apache-2.0
+Project-URL: Homepage, https://github.com/onecode-plant/onecode-plant-cli
+Project-URL: Documentation, https://onecode-plant.github.io/onecode-plant-cli/
+Project-URL: Repository, https://github.com/onecode-plant/onecode-plant-cli.git
+Project-URL: Bug Reports, https://github.com/onecode-plant/onecode-plant-cli/issues
+Project-URL: Changelog, https://github.com/onecode-plant/onecode-plant-cli/blob/main/CHANGELOG.md
+Keywords: robotics,ros2,cli,automation,development,workflow,build-tools,simulation,navigation,colcon,gazebo,nav2
+Platform: any
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: System :: Software Distribution
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Framework :: Robot Framework
+Classifier: Topic :: Scientific/Engineering :: Robotics
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: click>=8.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: setuptools>=45.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: pytest-mock>=3.10.0; extra == "dev"
+Requires-Dist: pytest-xdist>=3.0.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: isort>=5.10.0; extra == "dev"
+Requires-Dist: flake8>=4.0.0; extra == "dev"
+Requires-Dist: mypy>=0.990; extra == "dev"
+Requires-Dist: pre-commit>=2.20.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: mkdocs>=1.4.0; extra == "docs"
+Requires-Dist: mkdocs-material>=8.5.0; extra == "docs"
+Requires-Dist: mkdocs-mermaid2-plugin>=0.6.0; extra == "docs"
+Provides-Extra: test
+Requires-Dist: pytest>=7.0.0; extra == "test"
+Requires-Dist: pytest-cov>=4.0.0; extra == "test"
+Requires-Dist: pytest-mock>=3.10.0; extra == "test"
+Requires-Dist: pytest-xdist>=3.0.0; extra == "test"
+Requires-Dist: pytest-benchmark>=4.0.0; extra == "test"
+Provides-Extra: all
+Requires-Dist: pytest>=7.0.0; extra == "all"
+Requires-Dist: pytest-cov>=4.0.0; extra == "all"
+Requires-Dist: pytest-mock>=3.10.0; extra == "all"
+Requires-Dist: pytest-xdist>=3.0.0; extra == "all"
+Requires-Dist: black>=22.0.0; extra == "all"
+Requires-Dist: isort>=5.10.0; extra == "all"
+Requires-Dist: flake8>=4.0.0; extra == "all"
+Requires-Dist: mypy>=0.990; extra == "all"
+Requires-Dist: pre-commit>=2.20.0; extra == "all"
+Requires-Dist: mkdocs>=1.4.0; extra == "all"
+Requires-Dist: mkdocs-material>=8.5.0; extra == "all"
+Requires-Dist: mkdocs-mermaid2-plugin>=0.6.0; extra == "all"
+Requires-Dist: pytest-benchmark>=4.0.0; extra == "all"
+Dynamic: author
+Dynamic: home-page
+Dynamic: maintainer
+Dynamic: platform
+Dynamic: requires-python
+
+# OneCode Plant CLI
+
+**Intelligent ROS2 development tooling and unified workflows**
+
+[![CI](https://github.com/your-org/onecode-plant/workflows/CI/badge.svg)](https://github.com/your-org/onecode-plant/actions)
+[![codecov](https://codecov.io/gh/your-org/onecode-plant/branch/main/graph/badge.svg)](https://codecov.io/gh/your-org/onecode-plant)
+[![PyPI version](https://badge.fury.io/py/onecode-plant-cli.svg)](https://badge.fury.io/py/onecode-plant-cli)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+OneCode Plant CLI extends ROS2CLI with intelligent tooling and unified workflows for robotics development. It provides a two-tier command structure that maintains complete backward compatibility with ROS2 while adding powerful automation and workflow capabilities.
+
+## ✨ Features
+
+- **🔄 ROS2 Passthrough**: All existing `ros2` commands work unchanged
+- **🏗️ Intelligent Workflows**: Automated sequences for common robotics tasks  
+- **🔌 Plugin Architecture**: Extensible system for tool integration
+- **⚡ Enhanced Build System**: Colcon integration with intelligent defaults
+- **🎮 Simulation Management**: Unified interface for Gazebo, Isaac Sim, and more
+- **🧭 Navigation Support**: Advanced Nav2 integration and configuration
+- **🤖 Multi-Robot Coordination**: Built-in support for distributed robotics
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install onecode-plant-cli

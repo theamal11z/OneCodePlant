@@ -27,7 +27,8 @@ class OneCodeCLI:
     def execute_ros2_passthrough(self, args: List[str]) -> int:
         """Execute ROS2 commands via passthrough mode."""
         self.logger.debug(f"Executing ROS2 passthrough: {' '.join(args)}")
-        return self.ros2_interface.run_command(args)
+        result = self.ros2_interface.run_command(args)
+        return result.returncode if hasattr(result, 'returncode') else 0
     
     def execute_onecode_command(self, ctx, **kwargs) -> int:
         """Execute OneCode-specific commands via plugin system."""
@@ -121,9 +122,9 @@ def start(ctx, world, robot, headless):
     )
 
 
-@cli.command()
+@cli.command(name='version')
 @click.pass_context
-def version(ctx):
+def show_version(ctx):
     """Show OneCode Plant version information."""
     from onecode import __version__
     click.echo(f"OneCode Plant CLI v{__version__}")

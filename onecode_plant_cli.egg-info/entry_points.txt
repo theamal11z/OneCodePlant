@@ -1,0 +1,6 @@
+[console_scripts]
+onecode = onecode.cli:main
+
+[onecode.plugins]
+colcon = onecode.plugins.colcon_plugin:ColconPlugin
+simulation = onecode.plugins.sim_plugin:SimulationPlugin
