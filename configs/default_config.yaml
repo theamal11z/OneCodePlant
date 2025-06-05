@@ -1,0 +1,44 @@
+# Default configuration for OneCode Plant CLI
+
+# Build configuration
+build:
+  cmake_build_type: "Release"
+  symlink_install: true
+  parallel_jobs: null  # null means auto-detect
+  continue_on_error: false
+  cmake_args: null
+  ament_cmake_args: null
+
+# Simulation configuration  
+simulation:
+  default_world: null
+  default_robot: null
+  headless_mode: false
+  auto_close_on_exit: true
+  gazebo_model_path: null
+  gazebo_resource_path: null
+
+# Logging configuration
+logging:
+  level: "INFO"
+  file: null
+  max_file_size: "10MB"
+  backup_count: 5
+
+# Plugin-specific configurations
+plugins:
+  colcon:
+    enable_parallel_testing: true
+    test_timeout: 300
+  
+  simulation:
+    preferred_simulator: "auto"  # auto, gazebo, gz, ign
+    startup_timeout: 30
+  
+  nav2:
+    default_map_server: true
+    default_amcl: true
+  
+  moveit:
+    planning_pipeline: "ompl"
+    default_planner: "RRTConnect"

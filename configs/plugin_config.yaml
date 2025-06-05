@@ -1,0 +1,98 @@
+# Plugin-specific configuration for OneCode Plant CLI
+
+# Colcon plugin configuration
+colcon:
+  build:
+    event_handlers:
+      - "console_direct+"
+      - "compile_commands"
+    cmake_args:
+      - "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+    ament_cmake_args: []
+  test:
+    event_handlers:
+      - "console_cohesion+"
+    pytest_args:
+      - "-v"
+      - "--tb=short"
+
+# Simulation plugin configuration
+simulation:
+  gazebo:
+    gui: true
+    physics_engine: "ode"
+    world_path: "/usr/share/gazebo/worlds"
+    model_path: "/usr/share/gazebo/models"
+  ignition:
+    render_engine: "ogre2" 
+    physics_engine: "bullet"
+  isaac_sim:
+    enable_gpu_physics: true
+    enable_rtx: true
+
+# Navigation plugin configuration
+nav2:
+  costmap:
+    global_frame: "map"
+    robot_base_frame: "base_link"
+    resolution: 0.05
+  planner:
+    default_algorithm: "navfn"
+    allow_unknown: true
+  controller:
+    frequency: 20.0
+    max_vel_x: 0.26
+    max_vel_theta: 1.0
+
+# MoveIt plugin configuration
+moveit:
+  planning:
+    planning_attempts: 10
+    planning_time: 5.0
+    max_velocity_scaling_factor: 0.1
+    max_acceleration_scaling_factor: 0.1
+  trajectory_execution:
+    allowed_execution_duration_scaling: 1.2
+    allowed_goal_duration_margin: 0.5
+    allowed_start_tolerance: 0.01
+
+# LeRobot plugin configuration
+lerobot:
+  training:
+    batch_size: 32
+    learning_rate: 0.001
+    num_epochs: 100
+  data:
+    dataset_path: "./datasets"
+    cache_enabled: true
+    preprocessing: "default"
+
+# SymForce plugin configuration  
+symforce:
+  optimization:
+    solver: "levenberg_marquardt"
+    max_iterations: 100
+    tolerance: 1e-6
+  codegen:
+    target_language: "cpp"
+    use_eigen: true
+
+# FogROS2 plugin configuration
+fogros2:
+  cloud:
+    provider: "aws"  # aws, gcp, azure
+    region: "us-west-2"
+    instance_type: "t3.medium"
+  edge:
+    auto_discovery: true
+    heartbeat_interval: 5.0
+
+# ChoirBot plugin configuration
+choirbot:
+  multi_robot:
+    namespace_prefix: "robot"
+    communication_type: "ros2"
+    coordination_algorithm: "auction"
+  simulation:
+    spawn_delay: 2.0
+    formation_controller: "leader_follower"
