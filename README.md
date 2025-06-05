@@ -25,4 +25,7 @@ OneCode Plant CLI extends ROS2CLI with intelligent tooling and unified workflows
 ### Installation
 
 ```bash
-pip install onecode-plant-cli
+# Install from source
+git clone <repository-url>
+cd onecode-plant-cli
+pip install -e .

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneCode Plant CLI - Interactive Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            color: white;
+            padding: 60px 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            background: white;
+            border-radius: 12px;
+            margin: 40px 0;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+        
+        .terminal {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 20px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        
+        .terminal-header {
+            background: #2d3748;
+            padding: 10px 20px;
+            border-bottom: 1px solid #4a5568;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-red { background: #f56565; }
+        .dot-yellow { background: #ecc94b; }
+        .dot-green { background: #48bb78; }
+        
+        .terminal-title {
+            margin-left: 20px;
+            color: #a0aec0;
+            font-size: 12px;
+        }
+        
+        .command-line {
+            margin: 8px 0;
+        }
+        
+        .prompt {
+            color: #68d391;
+        }
+        
+        .command {
+            color: #90cdf4;
+        }
+        
+        .output {
+            color: #e2e8f0;
+            margin-left: 20px;
+        }
+        
+        .success {
+            color: #68d391;
+        }
+        
+        .warning {
+            color: #f6e05e;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 40px;
+        }
+        
+        .feature {
+            text-align: center;
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .feature h3 {
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        
+        .feature p {
+            color: #718096;
+            line-height: 1.6;
+        }
+        
+        .interactive-demo {
+            padding: 40px;
+            background: #f7fafc;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .demo-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🤖 OneCode Plant CLI</h1>
+            <p>Intelligent ROS2 development tooling with unified workflows</p>
+            <div class="cta-buttons">
+                <a href="/demo.html" class="btn btn-primary">View Full Demo</a>
+                <a href="#interactive" class="btn btn-secondary">Try Commands</a>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="terminal-header">
+                <div class="terminal-dot dot-red"></div>
+                <div class="terminal-dot dot-yellow"></div>
+                <div class="terminal-dot dot-green"></div>
+                <div class="terminal-title">OneCode Plant CLI - Live Demo</div>
+            </div>
+            <div class="terminal">
+                <div class="command-line">
+                    <span class="prompt">$</span> <span class="command">python -m onecode.cli --help</span>
+                </div>
+                <div class="output">
+Usage: python -m onecode.cli [OPTIONS] COMMAND [ARGS]...<br>
+  OneCode Plant - Intelligent ROS2 development tooling.<br><br>
+Options:<br>
+  -v, --verbose  Enable verbose logging<br>
+  --debug        Enable debug logging<br>
+  --config PATH  Path to config file<br>
+  --help         Show this message and exit.<br><br>
+Commands:<br>
+  <span class="success">build    Build commands for ROS2 packages.</span><br>
+  <span class="success">plugins  List available plugins and their status.</span><br>
+  <span class="success">sim      Simulation commands.</span><br>
+  <span class="success">version  Show OneCode Plant version information.</span>
+                </div>
+                
+                <div class="command-line">
+                    <span class="prompt">$</span> <span class="command">python -m onecode.cli version</span>
+                </div>
+                <div class="output success">
+                    OneCode Plant CLI v0.1.0
+                </div>
+                
+                <div class="command-line">
+                    <span class="prompt">$</span> <span class="command">python -m onecode.cli plugins</span>
+                </div>
+                <div class="output">
+Available Plugins:<br>
+----------------------------------------<br>
+<span class="warning">colcon               ✗ Unavailable</span><br>
+                     Colcon build system integration for ROS2 packages<br>
+<span class="warning">simulation           ✗ Unavailable</span><br>
+                     Simulation environment management (Gazebo, Isaac Sim, etc.)
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Modular Plugin System</h3>
+                    <p>Extensible architecture allowing easy integration of new tools and workflows for robotics development.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <h3>ROS2 Integration</h3>
+                    <p>Seamless ROS2 command passthrough and intelligent workspace management with colcon build system support.</p>
+                </div>
+                
+                <div class="feature">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Simulation Management</h3>
+                    <p>Unified interface for simulation environments including Gazebo, Isaac Sim, and other robotics simulators.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content" id="interactive">
+            <div class="interactive-demo">
+                <h2>Available Commands</h2>
+                <p>The OneCode Plant CLI provides a comprehensive set of commands for robotics development workflows:</p>
+                
+                <div class="demo-grid">
+                    <div class="demo-section">
+                        <h3>🔨 Build Commands</h3>
+                        <div class="terminal">
+                            <div class="command-line">
+                                <span class="prompt">$</span> <span class="command">onecode build workspace</span>
+                            </div>
+                            <div class="command-line">
+                                <span class="prompt">$</span> <span class="command">onecode build workspace --packages my_robot</span>
+                            </div>
+                            <div class="command-line">
+                                <span class="prompt">$</span> <span class="command">onecode build workspace --parallel-jobs 4</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-section">
+                        <h3>🎮 Simulation Commands</h3>
+                        <div class="terminal">
+                            <div class="command-line">
+                                <span class="prompt">$</span> <span class="command">onecode sim start</span>
+                            </div>
+                            <div class="command-line">
+                                <span class="prompt">$</span> <span class="command">onecode sim start --world office.world</span>
+                            </div>
+                            <div class="command-line">
+                                <span class="prompt">$</span> <span class="command">onecode sim start --robot turtlebot3 --headless</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/demo.html" class="btn btn-primary">Explore Full Documentation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
